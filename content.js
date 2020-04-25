@@ -255,10 +255,8 @@ const addRegisterRoomLinks = (buttonContainer) => {
 	    updateDisabled(true)
 	    updateSaveButtonText("SAVING");
 	    writeToLocalStorage(updatedData).then(() => {
-		setTimeout(() => {
-		    updateSaveButtonText(originalLabel);
-		    updateDisabled(false)
-		}, 2000)
+		updateSaveButtonText(originalLabel);
+		updateDisabled(false);
 	    });
 	});
 
