@@ -1,0 +1,29 @@
+{
+    "name": "Parrit Pairs",
+    "version": "1.0",
+    "description": "Get pairs from Parrit",
+    "background": {
+	"scripts": ["background.js"],
+	"persistent": false
+    },
+    "page_action" : {
+	"default_title": "generate pair text",
+	"default_icon": "parrit-icon.png"
+    },
+    "permissions" : [
+	"declarativeContent",
+	"clipboardWrite",
+	"storage"
+    ],
+    "content_scripts":[
+        {
+            "matches":[
+                "https://parrit.cfapps.io/*"
+            ],
+            "js":["ramda.js", "content.js"],
+            "run_at":"document_idle",
+            "all_frames":false
+        }
+    ],
+    "manifest_version": 2
+}
