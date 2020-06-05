@@ -287,12 +287,67 @@ const addRegisterRoomLinks = (buttonContainer) => {
 	}
 }
 
+const addSpinnerFunctionality = () => {
+	let recommendButton
+	for (button of document.querySelectorAll("button")) {
+		if (button.innerText.startsWith("Recommend")) {
+			recommendButton = button;
+		}
+	}
+
+	if (recommendButton) {
+		recommendButton.onclick = () => {
+			console.log(`the number of persons to assign = ${document.querySelector(".floating-parrits").querySelector(".person-list").querySelectorAll(".person").length}`)
+
+			const container = document.querySelector(".project-page-container")
+			const spinnerDiv = document.createElement("div")
+
+			const imageUrl = chrome.runtime.getURL("parrit-spinner.gif");
+			const image = document.createElement("img");
+			image.setAttribute("src", imageUrl);
+			image.style.zIndex = "1001";
+			image.style.marginTop = "25%";
+			image.style.marginLeft = "auto";
+			image.style.marginRight = "auto";
+			image.style.display = "block";
+
+			spinnerDiv.appendChild(image);
+
+			spinnerDiv.style.position = "absolute";
+			spinnerDiv.style.height = "100%";
+			spinnerDiv.style.width = "100%";
+			spinnerDiv.style.zIndex = "1000";
+			spinnerDiv.style.background = "rgba(245, 245, 220, .5)"; //"beige"; //245	245	220
+
+			container.appendChild(spinnerDiv);
+
+			// should we have a max timeout
+			let numberOfChecks = 0;
+			const intervalId = setInterval(
+				() => {
+					const peopleToAssign = document.querySelector(".floating-parrits").querySelector(".person-list").querySelectorAll(".person").length;
+					if (peopleToAssign === 0) {
+						console.log("Stop spinning");
+
+						container.removeChild(spinnerDiv);
+						clearInterval(intervalId);
+					} else {
+						console.log(`checked ${numberOfChecks++} times`)
+					}
+				},
+				200
+			)
+		}
+	}
+}
+
 const onPageLoad = () => {
 	const buttonContainers = document.querySelectorAll(".project-actions");
 
 	if (buttonContainers.length > 0) {
 		addRegisterRoomLinks(buttonContainers[0]);
 		addButtonFunctionality(buttonContainers[0]);
+		addSpinnerFunctionality()
 	}
 }
 

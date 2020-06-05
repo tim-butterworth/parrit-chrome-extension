@@ -3,27 +3,33 @@
     "version": "1.0",
     "description": "Get pairs from Parrit",
     "background": {
-	"scripts": ["background.js"],
-	"persistent": false
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": false
     },
-    "page_action" : {
-	"default_title": "generate pair text",
-	"default_icon": "parrit-icon.png"
+    "page_action": {
+        "default_title": "generate pair text",
+        "default_icon": "parrit-icon.png"
     },
-    "permissions" : [
-	"declarativeContent",
-	"clipboardWrite",
-	"storage"
+    "permissions": [
+        "declarativeContent",
+        "clipboardWrite",
+        "storage"
     ],
-    "content_scripts":[
+    "content_scripts": [
         {
-            "matches":[
+            "matches": [
                 "https://parrit.cfapps.io/*"
             ],
-            "js":["ramda.js", "content.js"],
-            "run_at":"document_idle",
-            "all_frames":false
+            "js": [
+                "ramda.js",
+                "content.js"
+            ],
+            "run_at": "document_idle",
+            "all_frames": false
         }
     ],
-    "manifest_version": 2
+    "manifest_version": 2,
+    "web_accessible_resources": ["parrit-spinner.gif"]
 }
