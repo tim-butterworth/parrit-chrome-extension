@@ -302,7 +302,7 @@ const addSpinnerFunctionality = () => {
 			const container = document.querySelector(".project-page-container")
 			const spinnerDiv = document.createElement("div")
 
-			const imageUrl = chrome.runtime.getURL("r2d2_search.gif");
+			const imageUrl = chrome.runtime.getURL("lightning_r2d2.gif");
 			const image = document.createElement("img");
 			image.setAttribute("src", imageUrl);
 			image.style.zIndex = "1001";
