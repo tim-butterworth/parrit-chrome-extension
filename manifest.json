@@ -31,5 +31,5 @@
         }
     ],
     "manifest_version": 2,
-    "web_accessible_resources": ["parrit-spinner.gif"]
+    "web_accessible_resources": ["r2d2_search.gif"]
 }
